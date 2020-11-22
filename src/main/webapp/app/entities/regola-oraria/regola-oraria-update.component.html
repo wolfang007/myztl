@@ -1,0 +1,215 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-regola-oraria-heading" jhiTranslate="ztlApp.regolaOraria.home.createOrEditLabel">Create or edit a Regola Oraria</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.nome" for="field_nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" id="field_nome"
+                           formControlName="nome"/>
+                    <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('nome')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 50 }">
+                        This field cannot be longer than 50 characters.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.oraInizio" for="field_oraInizio">Ora Inizio</label>
+                    <select class="form-control" name="oraInizio" formControlName="oraInizio" id="field_oraInizio">
+                        <option value="ZERO">{{ 'ztlApp.OreEnum.ZERO' | translate }}</option>
+                        <option value="UNA">{{ 'ztlApp.OreEnum.UNA' | translate }}</option>
+                        <option value="DUE">{{ 'ztlApp.OreEnum.DUE' | translate }}</option>
+                        <option value="TRE">{{ 'ztlApp.OreEnum.TRE' | translate }}</option>
+                        <option value="QUATTRO">{{ 'ztlApp.OreEnum.QUATTRO' | translate }}</option>
+                        <option value="CINQUE">{{ 'ztlApp.OreEnum.CINQUE' | translate }}</option>
+                        <option value="SEI">{{ 'ztlApp.OreEnum.SEI' | translate }}</option>
+                        <option value="SETTE">{{ 'ztlApp.OreEnum.SETTE' | translate }}</option>
+                        <option value="OTTO">{{ 'ztlApp.OreEnum.OTTO' | translate }}</option>
+                        <option value="NOVE">{{ 'ztlApp.OreEnum.NOVE' | translate }}</option>
+                        <option value="DIECI">{{ 'ztlApp.OreEnum.DIECI' | translate }}</option>
+                        <option value="UNDICI">{{ 'ztlApp.OreEnum.UNDICI' | translate }}</option>
+                        <option value="DODICI">{{ 'ztlApp.OreEnum.DODICI' | translate }}</option>
+                        <option value="TREDICI">{{ 'ztlApp.OreEnum.TREDICI' | translate }}</option>
+                        <option value="QUATTORDICI">{{ 'ztlApp.OreEnum.QUATTORDICI' | translate }}</option>
+                        <option value="QUINDICI">{{ 'ztlApp.OreEnum.QUINDICI' | translate }}</option>
+                        <option value="SEDICI">{{ 'ztlApp.OreEnum.SEDICI' | translate }}</option>
+                        <option value="DICIASETTE">{{ 'ztlApp.OreEnum.DICIASETTE' | translate }}</option>
+                        <option value="DICIOTTO">{{ 'ztlApp.OreEnum.DICIOTTO' | translate }}</option>
+                        <option value="DICIANNOVE">{{ 'ztlApp.OreEnum.DICIANNOVE' | translate }}</option>
+                        <option value="VENTI">{{ 'ztlApp.OreEnum.VENTI' | translate }}</option>
+                        <option value="VENTUNO">{{ 'ztlApp.OreEnum.VENTUNO' | translate }}</option>
+                        <option value="VENTIDUE">{{ 'ztlApp.OreEnum.VENTIDUE' | translate }}</option>
+                        <option value="VENTITRE">{{ 'ztlApp.OreEnum.VENTITRE' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('oraInizio')!.invalid && (editForm.get('oraInizio')!.dirty || editForm.get('oraInizio')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('oraInizio')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.minutiInizio" for="field_minutiInizio">Minuti Inizio</label>
+                    <select class="form-control" name="minutiInizio" formControlName="minutiInizio" id="field_minutiInizio">
+                        <option value="QUINDICI">{{ 'ztlApp.MinutiEnum.QUINDICI' | translate }}</option>
+                        <option value="TRENTA">{{ 'ztlApp.MinutiEnum.TRENTA' | translate }}</option>
+                        <option value="QUARANTACINQUE">{{ 'ztlApp.MinutiEnum.QUARANTACINQUE' | translate }}</option>
+                        <option value="SESSANTA">{{ 'ztlApp.MinutiEnum.SESSANTA' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('minutiInizio')!.invalid && (editForm.get('minutiInizio')!.dirty || editForm.get('minutiInizio')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('minutiInizio')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.oraFine" for="field_oraFine">Ora Fine</label>
+                    <select class="form-control" name="oraFine" formControlName="oraFine" id="field_oraFine">
+                        <option value="ZERO">{{ 'ztlApp.OreEnum.ZERO' | translate }}</option>
+                        <option value="UNA">{{ 'ztlApp.OreEnum.UNA' | translate }}</option>
+                        <option value="DUE">{{ 'ztlApp.OreEnum.DUE' | translate }}</option>
+                        <option value="TRE">{{ 'ztlApp.OreEnum.TRE' | translate }}</option>
+                        <option value="QUATTRO">{{ 'ztlApp.OreEnum.QUATTRO' | translate }}</option>
+                        <option value="CINQUE">{{ 'ztlApp.OreEnum.CINQUE' | translate }}</option>
+                        <option value="SEI">{{ 'ztlApp.OreEnum.SEI' | translate }}</option>
+                        <option value="SETTE">{{ 'ztlApp.OreEnum.SETTE' | translate }}</option>
+                        <option value="OTTO">{{ 'ztlApp.OreEnum.OTTO' | translate }}</option>
+                        <option value="NOVE">{{ 'ztlApp.OreEnum.NOVE' | translate }}</option>
+                        <option value="DIECI">{{ 'ztlApp.OreEnum.DIECI' | translate }}</option>
+                        <option value="UNDICI">{{ 'ztlApp.OreEnum.UNDICI' | translate }}</option>
+                        <option value="DODICI">{{ 'ztlApp.OreEnum.DODICI' | translate }}</option>
+                        <option value="TREDICI">{{ 'ztlApp.OreEnum.TREDICI' | translate }}</option>
+                        <option value="QUATTORDICI">{{ 'ztlApp.OreEnum.QUATTORDICI' | translate }}</option>
+                        <option value="QUINDICI">{{ 'ztlApp.OreEnum.QUINDICI' | translate }}</option>
+                        <option value="SEDICI">{{ 'ztlApp.OreEnum.SEDICI' | translate }}</option>
+                        <option value="DICIASETTE">{{ 'ztlApp.OreEnum.DICIASETTE' | translate }}</option>
+                        <option value="DICIOTTO">{{ 'ztlApp.OreEnum.DICIOTTO' | translate }}</option>
+                        <option value="DICIANNOVE">{{ 'ztlApp.OreEnum.DICIANNOVE' | translate }}</option>
+                        <option value="VENTI">{{ 'ztlApp.OreEnum.VENTI' | translate }}</option>
+                        <option value="VENTUNO">{{ 'ztlApp.OreEnum.VENTUNO' | translate }}</option>
+                        <option value="VENTIDUE">{{ 'ztlApp.OreEnum.VENTIDUE' | translate }}</option>
+                        <option value="VENTITRE">{{ 'ztlApp.OreEnum.VENTITRE' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('oraFine')!.invalid && (editForm.get('oraFine')!.dirty || editForm.get('oraFine')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('oraFine')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.minutiFine" for="field_minutiFine">Minuti Fine</label>
+                    <select class="form-control" name="minutiFine" formControlName="minutiFine" id="field_minutiFine">
+                        <option value="QUINDICI">{{ 'ztlApp.MinutiEnum.QUINDICI' | translate }}</option>
+                        <option value="TRENTA">{{ 'ztlApp.MinutiEnum.TRENTA' | translate }}</option>
+                        <option value="QUARANTACINQUE">{{ 'ztlApp.MinutiEnum.QUARANTACINQUE' | translate }}</option>
+                        <option value="SESSANTA">{{ 'ztlApp.MinutiEnum.SESSANTA' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('minutiFine')!.invalid && (editForm.get('minutiFine')!.dirty || editForm.get('minutiFine')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('minutiFine')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.lunedi" for="field_lunedi">Lunedi</label>
+                    <input type="checkbox" class="form-control" name="lunedi" id="field_lunedi"
+                           formControlName="lunedi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.martedi" for="field_martedi">Martedi</label>
+                    <input type="checkbox" class="form-control" name="martedi" id="field_martedi"
+                           formControlName="martedi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.mercoledi" for="field_mercoledi">Mercoledi</label>
+                    <input type="checkbox" class="form-control" name="mercoledi" id="field_mercoledi"
+                           formControlName="mercoledi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.giovedi" for="field_giovedi">Giovedi</label>
+                    <input type="checkbox" class="form-control" name="giovedi" id="field_giovedi"
+                           formControlName="giovedi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.venerdi" for="field_venerdi">Venerdi</label>
+                    <input type="checkbox" class="form-control" name="venerdi" id="field_venerdi"
+                           formControlName="venerdi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.sabato" for="field_sabato">Sabato</label>
+                    <input type="checkbox" class="form-control" name="sabato" id="field_sabato"
+                           formControlName="sabato"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.domenica" for="field_domenica">Domenica</label>
+                    <input type="checkbox" class="form-control" name="domenica" id="field_domenica"
+                           formControlName="domenica"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.festivi" for="field_festivi">Festivi</label>
+                    <input type="checkbox" class="form-control" name="festivi" id="field_festivi"
+                           formControlName="festivi"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="ztlApp.regolaOraria.stato" for="field_stato">Stato</label>
+                    <select class="form-control" name="stato" formControlName="stato" id="field_stato">
+                        <option value="ATTIVO">{{ 'ztlApp.EntityStatus.ATTIVO' | translate }}</option>
+                        <option value="DISATTIVO">{{ 'ztlApp.EntityStatus.DISATTIVO' | translate }}</option>
+                    </select>
+                    <div *ngIf="editForm.get('stato')!.invalid && (editForm.get('stato')!.dirty || editForm.get('stato')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('stato')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label jhiTranslate="ztlApp.regolaOraria.tipologiaVeicolo" for="field_tipologiaVeicolos">Tipologia Veicolo</label>
+                    <select class="form-control" id="field_tipologiaVeicolos" multiple name="tipologiaVeicolos" formControlName="tipologiaVeicolos">
+                        <option [ngValue]="getSelected(editForm.get('tipologiaVeicolos')!.value, tipologiaVeicoloOption)" *ngFor="let tipologiaVeicoloOption of tipologiaveicolos; trackBy: trackById">{{ tipologiaVeicoloOption.nome }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

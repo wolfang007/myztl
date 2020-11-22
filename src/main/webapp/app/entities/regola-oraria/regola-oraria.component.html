@@ -1,0 +1,97 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="ztlApp.regolaOraria.home.title">Regola Orarias</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-regola-oraria" [routerLink]="['/regola-oraria/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="ztlApp.regolaOraria.home.createLabel">
+            Create a new Regola Oraria
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="regolaOrarias?.length === 0">
+        <span jhiTranslate="ztlApp.regolaOraria.home.notFound">No regolaOrarias found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="regolaOrarias && regolaOrarias.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="nome"><span jhiTranslate="ztlApp.regolaOraria.nome">Nome</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="oraInizio"><span jhiTranslate="ztlApp.regolaOraria.oraInizio">Ora Inizio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="minutiInizio"><span jhiTranslate="ztlApp.regolaOraria.minutiInizio">Minuti Inizio</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="oraFine"><span jhiTranslate="ztlApp.regolaOraria.oraFine">Ora Fine</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="minutiFine"><span jhiTranslate="ztlApp.regolaOraria.minutiFine">Minuti Fine</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="lunedi"><span jhiTranslate="ztlApp.regolaOraria.lunedi">Lunedi</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="martedi"><span jhiTranslate="ztlApp.regolaOraria.martedi">Martedi</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="mercoledi"><span jhiTranslate="ztlApp.regolaOraria.mercoledi">Mercoledi</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="giovedi"><span jhiTranslate="ztlApp.regolaOraria.giovedi">Giovedi</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="venerdi"><span jhiTranslate="ztlApp.regolaOraria.venerdi">Venerdi</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="sabato"><span jhiTranslate="ztlApp.regolaOraria.sabato">Sabato</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="domenica"><span jhiTranslate="ztlApp.regolaOraria.domenica">Domenica</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="festivi"><span jhiTranslate="ztlApp.regolaOraria.festivi">Festivi</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="stato"><span jhiTranslate="ztlApp.regolaOraria.stato">Stato</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let regolaOraria of regolaOrarias ;trackBy: trackId">
+                    <td><a [routerLink]="['/regola-oraria', regolaOraria.id, 'view']">{{ regolaOraria.id }}</a></td>
+                    <td>{{ regolaOraria.nome }}</td>
+                    <td jhiTranslate="{{ 'ztlApp.OreEnum.' + regolaOraria.oraInizio }}">{{ regolaOraria.oraInizio }}</td>
+                    <td jhiTranslate="{{ 'ztlApp.MinutiEnum.' + regolaOraria.minutiInizio }}">{{ regolaOraria.minutiInizio }}</td>
+                    <td jhiTranslate="{{ 'ztlApp.OreEnum.' + regolaOraria.oraFine }}">{{ regolaOraria.oraFine }}</td>
+                    <td jhiTranslate="{{ 'ztlApp.MinutiEnum.' + regolaOraria.minutiFine }}">{{ regolaOraria.minutiFine }}</td>
+                    <td>{{ regolaOraria.lunedi }}</td>
+                    <td>{{ regolaOraria.martedi }}</td>
+                    <td>{{ regolaOraria.mercoledi }}</td>
+                    <td>{{ regolaOraria.giovedi }}</td>
+                    <td>{{ regolaOraria.venerdi }}</td>
+                    <td>{{ regolaOraria.sabato }}</td>
+                    <td>{{ regolaOraria.domenica }}</td>
+                    <td>{{ regolaOraria.festivi }}</td>
+                    <td jhiTranslate="{{ 'ztlApp.EntityStatus.' + regolaOraria.stato }}">{{ regolaOraria.stato }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/regola-oraria', regolaOraria.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/regola-oraria', regolaOraria.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(regolaOraria)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="regolaOrarias && regolaOrarias.length > 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+{
+  "ztlApp": {
+    "TipoPersona": {
+      "null": "",
+      "FISICA": "FISICA",
+      "GIURIDICA": "GIURIDICA"
+    }
+  }
+}

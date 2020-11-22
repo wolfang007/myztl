@@ -1,0 +1,9 @@
+{
+  "ztlApp": {
+    "EntityStatus": {
+      "null": "",
+      "ATTIVO": "ATTIVO",
+      "DISATTIVO": "DISATTIVO"
+    }
+  }
+}
